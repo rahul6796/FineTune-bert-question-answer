@@ -12,6 +12,11 @@ data_validation:
   STATUS_FILE: artifacts/data_validation/status.txt
   ALL_FILES: ['train', 'validation']
 
+data_transformation:
+  root_dir: artifacts/data_transformation
+  data_path: artifacts/data_ingestion/squad
+  tokenizer_name: google-bert/bert-base-cased
+
 
 
 

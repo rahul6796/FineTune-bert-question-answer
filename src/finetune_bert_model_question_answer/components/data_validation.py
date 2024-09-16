@@ -2,8 +2,8 @@
 
 import os 
 
-from src.finetune_masked_language_model.entity import DataValidationConfig
-from src.finetune_masked_language_model.logging import logger
+from src.finetune_bert_model_question_answer.entity import DataValidationConfig
+from src.finetune_bert_model_question_answer.logging import logger
 
 
 class DataValidation:

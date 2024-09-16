@@ -1,7 +1,7 @@
 
 
-from src.finetune_masked_language_model.config.configuration import ConfigManager
-from src.finetune_masked_language_model.components.data_validation import DataValidation
+from src.finetune_bert_model_question_answer.config.configuration import ConfigManager
+from src.finetune_bert_model_question_answer.components.data_validation import DataValidation
 
 
 

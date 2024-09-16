@@ -18,6 +18,12 @@ class DataValidationConfig:
     STATUS_FILE: str
     ALL_FILES: list
 
+@dataclass(frozen = True)
+class DataTransformationConfig:
+    root_dir: Path
+    data_path: Path
+    tokenizer_name: str
+
 
 
 

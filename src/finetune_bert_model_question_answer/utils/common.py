@@ -1,6 +1,6 @@
 
 import os
-from src.finetune_masked_language_model.logging import logger
+from src.finetune_bert_model_question_answer.logging import logger
 
 from ensure import ensure_annotations
 from box import ConfigBox

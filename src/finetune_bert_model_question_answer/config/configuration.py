@@ -1,10 +1,11 @@
 
 
-from src.finetune_masked_language_model.entity import DataIngestionConfig
-from src.finetune_masked_language_model.entity import DataValidationConfig
+from src.finetune_bert_model_question_answer.entity import DataIngestionConfig
+from src.finetune_bert_model_question_answer.entity import DataValidationConfig
+from src.finetune_bert_model_question_answer.entity import DataTransformationConfig
 
-from src.finetune_masked_language_model.utils.common import read_yaml, create_directories
-from src.finetune_masked_language_model.constant import CONFIG_YAML, PARAMS_YAML
+from src.finetune_bert_model_question_answer.utils.common import read_yaml, create_directories
+from src.finetune_bert_model_question_answer.constant import CONFIG_YAML, PARAMS_YAML
 
 
 
@@ -45,6 +46,17 @@ class ConfigManager:
 
         return data_validation_config
 
+    def get_data_transform_config(self)->DataTransformationConfig:
 
+        config = self.config.data_transformation
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir = config.root_dir,
+            data_path = config.data_path,
+            tokenizer_name = config.tokenizer_name
+        )
+
+        return data_transformation_config
 
 
