@@ -6,3 +6,4 @@ data_ingestion:
   local_file_dir: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
 
+

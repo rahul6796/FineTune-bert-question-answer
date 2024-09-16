@@ -1,23 +1,24 @@
 
 
 import os
+import os
 import sys
 import logging
 
+
+
 log_dir = "logs"
+log_filepath = os.path.join(log_dir, 'running_logs')
 
-log_filepath = os.join.path(log_dir, 'running_log')
-
-os.makedir(log_dir, exist_ok = True)
+os.makedirs(log_dir, exist_ok=True)
 
 logging.basicConfig(
-    filename = log_filepath,
-    level = logging.INFO,
-    format = '%(asctime)s - %(levelname)s - %(message)s',
-    handlers = [
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s: %(message)s',
+    handlers=[
         logging.FileHandler(log_filepath),
         logging.StreamHandler(sys.stdout)
     ]
 )
 
-logger = logging.getgetLogger('question-answer')
+logger = logging.getLogger('question-answer')
