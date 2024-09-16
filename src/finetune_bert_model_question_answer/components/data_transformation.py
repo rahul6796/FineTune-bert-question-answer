@@ -72,15 +72,52 @@ class DataTransformation:
         return inputs
 
 
+    def preprocess_validation_examples(self, examples):
+        questions = [q.strip() for q in examples["question"]]
+        inputs = self.tokenizer(
+            questions,
+            examples["context"],
+            max_length=self.max_length,
+            truncation="only_second",
+            stride=self.stride,
+            return_overflowing_tokens=True,
+            return_offsets_mapping=True,
+            padding="max_length",
+        )
+
+        sample_map = inputs.pop("overflow_to_sample_mapping")
+        example_ids = []
+
+        for i in range(len(inputs["input_ids"])):
+            sample_idx = sample_map[i]
+            example_ids.append(examples["id"][sample_idx])
+
+            sequence_ids = inputs.sequence_ids(i)
+            offset = inputs["offset_mapping"][i]
+            inputs["offset_mapping"][i] = [
+                o if sequence_ids[k] == 1 else None for k, o in enumerate(offset)
+            ]
+
+        inputs["example_id"] = example_ids
+        return inputs
+
+
 
     def convert(self):
 
         squad = load_from_disk(self.config.data_path)
 
-        squad_dataset = squad["train"].map(
+        squad_dataset_train = squad["train"].map(
                     self.preprocess_training_examples,
                     batched=True,
                     remove_columns=squad["train"].column_names)
 
-        squad_dataset.save_to_disk(os.path.join(self.config.root_dir, 'squad'))
+        validation_dataset = squad["validation"].map(
+                        self.preprocess_validation_examples,
+                        batched=True,
+                        remove_columns=squad["validation"].column_names)
+
+
+        squad_dataset_train.save_to_disk(os.path.join(self.config.root_dir, 'squad'))
+        validation_dataset.save_to_disk(os.path.join(self.config.root_dir, 'squad'))
 
