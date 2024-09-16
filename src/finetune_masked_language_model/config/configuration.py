@@ -1,6 +1,8 @@
 
 
 from src.finetune_masked_language_model.entity import DataIngestionConfig
+from src.finetune_masked_language_model.entity import DataValidationConfig
+
 from src.finetune_masked_language_model.utils.common import read_yaml, create_directories
 from src.finetune_masked_language_model.constant import CONFIG_YAML, PARAMS_YAML
 
@@ -29,6 +31,20 @@ class ConfigManager:
             
         )
         return data_ingestion_config
+
+
+    def get_data_validation_config(self)->DataValidationConfig:
+        config = self.config.data_validation
+        create_directories([config.root_dir])
+        
+        data_validation_config = DataValidationConfig(
+            root_dir = config.root_dir,
+            STATUS_FILE = config.STATUS_FILE,
+            ALL_FILES = config.ALL_FILES
+        )
+
+        return data_validation_config
+
 
 
 
