@@ -107,17 +107,14 @@ class DataTransformation:
 
         squad = load_from_disk(self.config.data_path)
 
-        squad_dataset_train = squad["train"].map(
+        squad_dataset_train = squad.map(
                     self.preprocess_training_examples,
                     batched=True,
                     remove_columns=squad["train"].column_names)
 
-        validation_dataset = squad["validation"].map(
-                        self.preprocess_validation_examples,
-                        batched=True,
-                        remove_columns=squad["validation"].column_names)
+        # squad_dataset_train = squad.map(
+        #                 self.preprocess_validation_examples,
+        #                 batched=True,
+        #                 remove_columns=squad["validation"].column_names)
 
-
-        squad_dataset_train.save_to_disk(os.path.join(self.config.root_dir, 'squad'))
-        validation_dataset.save_to_disk(os.path.join(self.config.root_dir, 'squad'))
-
+        squad_dataset_train.save_to_disk(os.path.join(self.config.root_dir, 'squad_new'))

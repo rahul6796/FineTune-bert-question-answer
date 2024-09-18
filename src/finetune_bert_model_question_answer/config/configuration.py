@@ -3,6 +3,8 @@
 from src.finetune_bert_model_question_answer.entity import DataIngestionConfig
 from src.finetune_bert_model_question_answer.entity import DataValidationConfig
 from src.finetune_bert_model_question_answer.entity import DataTransformationConfig
+from src.finetune_bert_model_question_answer.entity import ModelTrainerConfig
+
 
 from src.finetune_bert_model_question_answer.utils.common import read_yaml, create_directories
 from src.finetune_bert_model_question_answer.constant import CONFIG_YAML, PARAMS_YAML
@@ -60,3 +62,14 @@ class ConfigManager:
         return data_transformation_config
 
 
+    def get_model_trainer_config(self)->ModelTrainerConfig:
+        config = self.config.model_trainer
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir = config.root_dir,
+            data_path = config.data_path,
+            model_ckpt = config.model_ckpt
+        )
+
+        return model_trainer_config

@@ -22,7 +22,13 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
-    tokenizer_name: str
+    tokenizer_name: Path
+
+@dataclass(frozen = True)
+class ModelTrainerConfig:
+    root_dir: Path
+    data_path: Path
+    model_ckpt: Path
 
 
 

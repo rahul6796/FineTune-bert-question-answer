@@ -15,8 +15,12 @@ data_validation:
 data_transformation:
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/squad
-  tokenizer_name: google-bert/bert-base-cased
+  tokenizer_name: distilbert/distilbert-base-cased-distilled-squad
 
+model_trainer:
+  root_dir: artifacts/model_trainer
+  data_path: artifacts/data_transformation/squad_new
+  model_ckpt: distilbert/distilbert-base-cased-distilled-squad
 
 
 
