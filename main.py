@@ -39,11 +39,11 @@ except Exception as e:
     logger.error(f'error raised from {STATE_NAME} : {e}')
 
 
-STATE_NAME = "Model Trainer"
+# STATE_NAME = "Model Trainer"
 
-try:
-    model_trainer = ModelTrainerPipeline()
-    model_trainer.run()
-    logger.info(f"Model trainer completed successfully for state: {STATE_NAME}")
-except Exception as e:
-    logger.error(f'error raised from {STATE_NAME} : {e}')
+# try:
+#     model_trainer = ModelTrainerPipeline()
+#     model_trainer.run()
+#     logger.info(f"Model trainer completed successfully for state: {STATE_NAME}")
+# except Exception as e:
+#     logger.error(f'error raised from {STATE_NAME} : {e}')

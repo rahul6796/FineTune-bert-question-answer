@@ -4,6 +4,8 @@ from src.finetune_bert_model_question_answer.entity import DataIngestionConfig
 from src.finetune_bert_model_question_answer.entity import DataValidationConfig
 from src.finetune_bert_model_question_answer.entity import DataTransformationConfig
 from src.finetune_bert_model_question_answer.entity import ModelTrainerConfig
+from src.finetune_bert_model_question_answer.entity import ModelPredictionConfig
+
 
 
 from src.finetune_bert_model_question_answer.utils.common import read_yaml, create_directories
@@ -73,3 +75,12 @@ class ConfigManager:
         )
 
         return model_trainer_config
+
+    def get_model_prediction_config(self)->ModelPredictionConfig:
+        config = self.config.model_prediction
+        model_prediction_config = ModelPredictionConfig(
+            model_path = config.model_path,
+            tokenizer_path = config.tokenizer_path
+
+        )
+        return model_prediction_config

@@ -22,6 +22,11 @@ model_trainer:
   data_path: artifacts/data_transformation/squad_new
   model_ckpt: distilbert/distilbert-base-cased-distilled-squad
 
+model_prediction:
+  model_path: artifacts/model_trainer/distilber-uncased
+  tokenizer_path: artifacts/model_trainer/tokenizer
+  
+
 
 
 
