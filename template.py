@@ -10,7 +10,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-project_name = 'finetune_masked_language_model'
+project_name = 'finetune_question_answer_model'
 
 list_of_files = [
     '.github/workflow/.gitkeep',
